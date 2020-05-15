@@ -70,11 +70,9 @@ function template_main()
 	{
 		echo '
 		<div id="poll">
-			<div class="cat_bar">
-				<h3 class="catbg">
-					<span class="main_icons poll"></span>', $context['poll']['is_locked'] ? '<span class="main_icons lock"></span>' : '', ' ', $context['poll']['question'], '
-				</h3>
-			</div>
+			<h3 class="cat_bar">
+				<span class="main_icons poll"></span>', $context['poll']['is_locked'] ? '<span class="main_icons lock"></span>' : '', ' ', $context['poll']['question'], '
+			</h3>
 			<div class="windowbg">
 				<div id="poll_options">';
 
@@ -128,7 +126,7 @@ function template_main()
 
 			echo '
 						</ul>
-						<div class="submitbutton">
+						<div class="textalign_end">
 							<input type="submit" value="', $txt['poll_vote'], '" class="button">
 							<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 						</div>
@@ -143,13 +141,9 @@ function template_main()
 		echo '
 				</div><!-- #poll_options -->
 			</div><!-- .windowbg -->
-		</div><!-- #poll -->
-		<div id="pollmoderation">';
+		</div><!-- #poll -->';
 
 		template_button_strip($context['poll_buttons']);
-
-		echo '
-		</div>';
 	}
 
 	// Does this topic have some events linked to it?
@@ -231,8 +225,7 @@ function template_main()
 			<div class="pagelinks floatleft">
 				<a href="#bot" class="button">', $txt['go_down'], '</a>
 				', $context['page_index'], '
-			</div>
-		</div>';
+			</div>';
 
 	// Mobile action - moderation buttons (top)
 	if (!empty($context['normal_buttons']))
@@ -244,8 +237,8 @@ function template_main()
 
 	// Show the topic information - icon, subject, etc.
 	echo '
-		<div id="forumposts">
-			<form action="', $scripturl, '?action=quickmod2;topic=', $context['current_topic'], '.', $context['start'], '" method="post" accept-charset="', $context['character_set'], '" name="quickModForm" id="quickModForm" onsubmit="return oQuickModify.bInEditMode ? oQuickModify.modifySave(\'' . $context['session_id'] . '\', \'' . $context['session_var'] . '\') : false">';
+		</div>
+		<form action="', $scripturl, '?action=quickmod2;topic=', $context['current_topic'], '.', $context['start'], '" method="post" accept-charset="', $context['character_set'], '" name="quickModForm" id="quickModForm" onsubmit="return oQuickModify.bInEditMode ? oQuickModify.modifySave(\'' . $context['session_id'] . '\', \'' . $context['session_var'] . '\') : false">';
 
 	$context['ignoredMsgs'] = array();
 	$context['removableMessageIDs'] = array();
@@ -255,16 +248,7 @@ function template_main()
 		template_single_post($message);
 
 	echo '
-			</form>
-		</div><!-- #forumposts -->';
-
-	// Mobile action - moderation buttons (bottom)
-	if (!empty($context['normal_buttons']))
-		echo '
-		<div class="mobile_buttons floatright">
-			<a class="button mobile_act">', $txt['mobile_action'], '</a>
-			', !empty($context['mod_buttons']) ? '<a class="button mobile_mod">' . $txt['mobile_moderation'] . '</a>' : '', '
-		</div>';
+		</form>';
 
 	// Show the page index... "Pages: [1]".
 	echo '
@@ -274,7 +258,17 @@ function template_main()
 			<div class="pagelinks floatleft">
 				<a href="#main_content_section" class="button" id="bot">', $txt['go_up'], '</a>
 				', $context['page_index'], '
-			</div>
+			</div>';
+
+	// Mobile action - moderation buttons (bottom)
+	if (!empty($context['normal_buttons']))
+		echo '
+			<div class="mobile_buttons floatright">
+				<a class="button mobile_act">', $txt['mobile_action'], '</a>
+				', !empty($context['mod_buttons']) ? '<a class="button mobile_mod">' . $txt['mobile_moderation'] . '</a>' : '', '
+			</div>';
+
+	echo '
 		</div>';
 
 	// Show the lower breadcrumbs.
@@ -474,7 +468,7 @@ function template_single_post($message)
 
 	// Show the message anchor and a "new" anchor if this message is new.
 	echo '
-				<div class="', $message['css_class'], '">
+				<article class="', $message['css_class'], '">
 					', $message['id'] != $context['first_message'] ? '
 					<a id="msg' . $message['id'] . '"></a>' . ($message['first_new'] ? '<a id="new"></a>' : '') : '', '
 					<div class="post_wrapper">';
@@ -911,8 +905,7 @@ function template_single_post($message)
 	echo '
 						</div><!-- .moderatorbar -->
 					</div><!-- .post_wrapper -->
-				</div><!-- $message[css_class] -->
-				<hr class="post_separator">';
+				</article><!-- $message[css_class] -->';
 }
 
 /**
@@ -924,12 +917,10 @@ function template_quickreply()
 
 	echo '
 		<a id="quickreply_anchor"></a>
-		<div class="tborder" id="quickreply">
-			<div class="cat_bar">
-				<h3 class="catbg">
-					', $txt['quick_reply'], '
-				</h3>
-			</div>
+		<div id="quickreply">
+			<h3 class="cat_bar">
+				', $txt['quick_reply'], '
+			</h3>
 			<div id="quickreply_options">
 				<div class="roundframe">';
 

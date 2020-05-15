@@ -33,11 +33,9 @@ function template_main()
 		</div>';
 
 	echo '
-		<div class="cat_bar">
-			<h3 class="catbg">
-				<span class="main_icons filter"></span>', $txt['set_parameters'], '
-			</h3>
-		</div>
+		<h3 class="cat_bar">
+			<span class="main_icons filter"></span>', $txt['set_parameters'], '
+		</h3>
 		<div id="advanced_search" class="roundframe">
 			<dl class="settings" id="search_options">
 				<dt>
@@ -230,11 +228,9 @@ function template_results()
 	{
 		echo '
 	<div id="search_results">
-		<div class="cat_bar">
-			<h3 class="catbg">
-				', $txt['search_adjust_query'], '
-			</h3>
-		</div>
+		<h3 class="cat_bar">
+			', $txt['search_adjust_query'], '
+		</h3>
 		<div class="roundframe">';
 
 		// Did they make any typos or mistakes, perhaps?
@@ -282,18 +278,17 @@ function template_results()
 	<form action="', $scripturl, '?action=quickmod" method="post" accept-charset="', $context['character_set'], '" name="topicForm">';
 
 		echo '
-		<div class="cat_bar">
-			<h3 class="catbg">
-				<span class="floatright">';
+		<h3 class="cat_bar">';
 
 		if (!empty($options['display_quick_mod']) && $options['display_quick_mod'] == 1)
 			echo '
-					<input type="checkbox" onclick="invertAll(this, this.form, \'topics[]\');">';
+			<span class="floatright">
+				<input type="checkbox" onclick="invertAll(this, this.form, \'topics[]\');">
+			</span>';
+
 		echo '
-				</span>
-				<span class="main_icons filter"></span> ', $txt['mlist_search_results'], ': ', $context['search_params']['search'], '
-			</h3>
-		</div>';
+			<span class="main_icons filter"></span> ', $txt['mlist_search_results'], ': ', $context['search_params']['search'], '
+		</h3>';
 
 		// Was anything even found?
 		if (!empty($context['topics']))
@@ -409,11 +404,9 @@ function template_results()
 	else
 	{
 		echo '
-	<div class="cat_bar">
-		<h3 class="catbg">
-			<span class="main_icons filter"></span> ', $txt['mlist_search_results'], ': ', $context['search_params']['search'], '
-		</h3>
-	</div>
+	<h3 class="cat_bar">
+		<span class="main_icons filter"></span> ', $txt['mlist_search_results'], ': ', $context['search_params']['search'], '
+	</h3>
 	<div class="pagesection">
 		<span>', $context['page_index'], '</span>
 	</div>';

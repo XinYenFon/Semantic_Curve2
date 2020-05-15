@@ -18,7 +18,7 @@ function template_recent()
 	global $context, $txt, $scripturl;
 
 	echo '
-	<div id="recent" class="main_section">
+	<div id="recent">
 		<div class="cat_bar">
 			<h3 class="catbg">
 				<span class="xx"></span>', $txt['recent_posts'], '

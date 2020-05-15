@@ -18,7 +18,7 @@ function template_main()
 	global $context, $settings, $scripturl, $txt;
 
 	echo '
-	<div class="main_section" id="memberlist">
+	<div id="memberlist">
 		<div class="pagesection">
 			', template_button_strip($context['memberlist_buttons'], 'right'), '
 			<div class="pagelinks floatleft">', $context['page_index'], '</div>
@@ -132,7 +132,7 @@ function template_main()
 	// If it is displaying the result of a search show a "search again" link to edit their criteria.
 	if (isset($context['old_search']))
 		echo '
-			<div class="buttonlist floatright">
+			<div class="buttonlist textalign_end">
 				<a class="button" href="', $scripturl, '?action=mlist;sa=search;search=', $context['old_search_value'], '">', $txt['mlist_search_again'], '</a>
 			</div>';
 	echo '

@@ -8,8 +8,11 @@ body {
 	font: 83.33%/150% "Segoe UI", "Helvetica Neue", "Nimbus Sans L", Arial, "Liberation Sans", sans-serif;
 	color: #4d4d4d;
 	display: flex;
-	flex-direction: column;
+	flex-flow: row wrap;
 	min-height: 100vh;
+}
+body > * {
+	flex: 1 100%;
 }
 ::selection {
 	text-shadow: none;
@@ -149,9 +152,6 @@ fieldset legend {
 strong, .strong {
 	font-weight: bold;
 	color: #444;
-}
-.cat_bar strong {
-	color: #fff;
 }
 em, .em {
 	font-style: italic;
@@ -293,15 +293,15 @@ h3.largetext {
 	margin: 0 auto;
 	text-align: center;
 }
-.righttext {
+.righttext, .textalign_end {
 	margin-left: auto;
 	margin-right: 0;
-	text-align: right;
+	text-align: end;
 }
-.lefttext {
+.lefttext, .textalign_start {
 	margin-left: 0;
 	margin-right: auto;
-	text-align: left;
+	text-align: start;
 }
 .justifytext {
 	text-align: justify;
@@ -312,9 +312,6 @@ h3.largetext {
 /* some common padding styles */
 .padding {
 	padding: 8px;
-}
-.main_section, .lower_padding {
-	padding-bottom: 6px;
 }
 .half_content {
 	width: 50%;
@@ -507,9 +504,6 @@ strong[id^='child_list_']::after {
 .pages {
 	font-size: 0.9em;
 	margin-left: 7px;
-}
-#main_content_section .pagesection {
-	margin: 4px 0 0 0;
 }
 .pagelinks .button {
 	padding: 0 5px;
@@ -770,7 +764,7 @@ img.sort, .sort {
 	text-shadow: none;
 }
 
-#main_menu {
+nav {
 	margin: 0 0 4px 0;
 }
 
@@ -1068,17 +1062,18 @@ img.sort, .sort {
 ------------------------------------------------------- */
 
 /* Box-shadow only on this one. */
-#wrapper {
+main {
 	width: 90%;
 	clear: both;
 	background: #fff;
 	border: 1px solid #b8b8b8;
 	border-radius: 8px;
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.14);
+	padding: 0 0 10px 0;
 }
 
 /* Set maximum width limit for content */
-#top_section .inner_wrap, #wrapper, #header, #footer .inner_wrap {
+#top_section .inner_wrap, main, #header, footer .inner_wrap {
 	max-width: 1200px;
 	margin: 0 auto;
 }
@@ -1090,7 +1085,7 @@ img.sort, .sort {
 	border-bottom: 1px solid #bbb;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
 	background: #fff;
-	clear: both;
+	align-self: flex-start;
 }
 #top_section::after {
 	content: "";
@@ -1117,6 +1112,9 @@ img.sort, .sort {
 }
 #languages_form {
 	margin: 0 0 0 10px;
+}
+.form_container:empty {
+	display: none;
 }
 /* The logo and slogan. */
 #header {
@@ -1157,17 +1155,11 @@ img#smflogo {
 }
 /*
 /* The user info, news, etc.*/
-#upper_section {
-	padding: 2px 2px 0 2px;
-}
 #inner_section {
-	padding: 12px 10px 2px 10px;
+	padding: 14px 10px 0 10px;
 	border-radius: 6px 6px 0 0;
-}
-#inner_section::after {
-	content: "";
-	display: block;
-	clear: both;
+	border: 2px solid #ffffff;
+	border-bottom: none;
 }
 /* The upper_section, float the two each way */
 .user {
@@ -1206,12 +1198,7 @@ ul li.greeting {
 /* The navigation list (i.e. linktree) */
 .navigate_section {
 	padding: 3px 0 0 0;
-	float: left;
 	width: 100%;
-}
-#main_content_section .navigate_section {
-	margin: 4px 0 0 0;
-	padding: 0;
 }
 .navigate_section ul {
 	margin: 4px 0 0 0;
@@ -1260,37 +1247,26 @@ ul li.greeting {
 	margin-top: 4px;
 }
 /* The content section */
-#content_section {
-	margin: 0 auto;
-	clear: both;
-}
 #main_content_section {
-	padding: 5px 12px 16px 12px;
-}
-#main_content_section::after {
-	content: "";
-	display: block;
-	clear: both;
+	padding: 0 12px 16px 12px;
+	margin: 10px 0 0 0;
 }
 /* Footer is now full-width by default. */
 /* The footer with copyright links etc. */
-#footer {
+footer {
 	margin: 4em 0 0 0;
 	padding: 10px 5%;
 	background: #3e5a78;
 	border-top: 3px solid #b2b6bd;
-	flex: none;
+	align-self: flex-end;
 }
-#footer li, #footer p, #footer a {
+footer li, footer p, footer a {
 	font-size: 0.9em;
 	color: #fff;
 }
-#footer li.copyright {
+footer li.copyright {
 	display: block;
 	font-family: Verdana, sans-serif; /* Copyright must be Verdana! */
-}
-#footerfix {
-	flex: 1 0 auto;
 }
 
 /* The posting icons */
@@ -2482,11 +2458,6 @@ dl {
 
 /* Styles for the statistics center.
 ------------------------------------------------- */
-#statistics .roundframe {
-	margin: 0;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-}
 dl.stats dt {
 	width: 50%;
 	float: left;
@@ -2785,20 +2756,20 @@ dl.addrules dt.floatleft {
 	border-radius: 6px 6px 2px 2px;
 	box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(255, 255, 255, 0.2);
 }
-#main_menu .popup_heading, #genericmenu .popup_heading {
+nav .popup_heading, #genericmenu .popup_heading {
 	display: none;
 }
 #genericmenu > .popup_container {
 	z-index: 1;
 }
-#main_menu .popup_container, #genericmenu > .popup_container {
+nav .popup_container, #genericmenu > .popup_container {
 	display: block;
 	position: relative;
 	background: none;
 	margin: 0;
 	height: auto; /* In case anything fishy happens in the situations where this used make sure it stays still */
 }
-#main_menu .popup_window, #genericmenu .popup_window {
+nav .popup_window, #genericmenu .popup_window {
 	position: relative;
 	width: auto;
 	box-shadow: none;
@@ -2840,10 +2811,6 @@ tr.windowbg:hover {
 	background: #e2eef8;
 }
 
-/* Special treatment for #forumposts area */
-#forumposts .windowbg, #forumposts .approvebg, #forumposts .approvebg2, #pmFolder .windowbg {
-	overflow: visible;
-}
 /* Nobody wants locked topics to stand out much. */
 .windowbg.locked {
 	background: #e7eaef;
@@ -3114,6 +3081,7 @@ span.postby {
 	margin: 0;
 	border-radius: 0;
 	display: flex;
+	padding: 5px 0;
 }
 #topic_header div {
 	font-weight: bold;
@@ -3134,7 +3102,7 @@ span.postby {
 	overflow: hidden;
 }
 #topic_container .lastpost, #topic_header .lastpost {
-	width: 28ex;
+	width: 20%;
 }
 #topic_container .lastpost, #topic_container .board_stats {
 	flex-shrink: 0;
@@ -3213,10 +3181,6 @@ span.postby {
 	padding: 0 6px 6px 6px;
 }
 
-div#pollmoderation {
-	overflow: auto;
-}
-
 /* Styles for edit poll section. */
 #edit_poll dl.poll_options dt {
 	width: 33%;
@@ -3234,25 +3198,6 @@ div#pollmoderation {
 	margin-left: 1em;
 }
 
-/* On to the posts */
-#forumposts {
-	clear: both;
-	margin: 8px 0 0 0;
-}
-#forumposts .cat_bar {
-	margin: 0 0 -4px 0;
-}
-/* Topic information */
-#forumposts .catbg img {
-	margin: 0 4px -2px 0;
-}
-#forumposts .catbg span {
-	white-space: pre;
-	/* Specific sizing for clarity without ClearType. */
-	font-size: 0.818em;
-	font-weight: normal;
-	padding: 2px 0;
-}
 /* poster and postarea + moderation area underneath */
 .post_wrapper::after {
 	content: "";
@@ -3402,10 +3347,7 @@ img.smiley {
 	clear: both;
 	margin: 12px 0;
 }
-/* Separator of posts. More useful in the print stylesheet. */
-#forumposts .post_separator {
-	display: none;
-}
+
 /* Next and previous topic links */
 .nextlinks {
 	text-transform: capitalize;
@@ -3583,17 +3525,20 @@ ul.post_options li {
 }
 
 /* General Classes */
-/* Cat_bar / catbg */
-div.cat_bar {
+/* cat_bar */
+.cat_bar {
 	background: #557ea0;
 	border-bottom: 1px solid #777;
-	padding: 0;
+	color: #fff;
+	padding: 8px 12px 6px 12px;
 	border-radius: 6px 6px 0 0;
 	box-shadow: 0 16px 20px rgba(255, 255, 255, 0.15) inset;
 	text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
+	font-size: 1.1em;
+	font-family: "Tahoma", sans-serif;
 }
-.cat_bar h3 {
-	padding: 8px 12px 6px 12px;
+.cat_bar a, .cat_bar strong {
+	color: #fff;
 }
 /* Styles for rounded headers. */
 .cat_bar .desc {
@@ -3601,21 +3546,14 @@ div.cat_bar {
 	font-size: 12px;
 	line-height: 1.5em;
 	font-weight: normal;
-	margin: -8px 0 4px 8px;
+	margin: 0 0 4px 8px;
 }
-h3.catbg {
-	overflow: hidden;
-	font-size: 1.1em;
-	font-family: "Tahoma", sans-serif;
-}
-h3.catbg, h3.catbg a, h3.catbg a:hover {
-	color: #fff;
-}
-h3.catbg a:hover {
+
+.cat_bar a:hover {
 	text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 	text-decoration: none;
 }
-h3.catbg .main_icons::before, h3.catbg .icon {
+.cat_bar .main_icons::before, .cat_bar .icon {
 	vertical-align: middle;
 	margin: 0 5px 0 0;
 }
@@ -3627,6 +3565,7 @@ h3.catbg .main_icons::before, h3.catbg .icon {
 .cat_bar + .title_bar {
 	margin-top: 0;
 }
+
 /* Roundframe */
 .roundframe {
 	margin: 10px 0 0 0;
@@ -3855,8 +3794,7 @@ h3.profile_hd {
 
 /* Some new stuff */
 #display_head {
-	clear: both;
-	margin: -7px 0 15px 0;
+	margin: -10px 0 15px 0;
 }
 #display_head p {
 	color: #959595;
@@ -4083,4 +4021,27 @@ tr[id^='list_news_lists_'] textarea {
 /* To break or not to break that is the question indeed */
 .word_break {
 	word-break: break-all;
+}
+
+/* Flex me out baby! */
+.flex_container,
+.cat_bar {
+	display: flex;
+	flex-flow: row wrap;
+}
+.by_two > *,
+.cat_bar > * {
+	flex: 1 50%;
+}
+.by_three > * {
+	flex: 1 33%;
+}
+.by_four > * {
+	flex: 1 25%;
+}
+.flex_start {
+	align-self: flex-start;
+}
+.flex_end {
+	align-self: flex-end;
 }

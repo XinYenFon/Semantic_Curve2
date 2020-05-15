@@ -18,10 +18,8 @@ function template_main()
 	global $context, $settings, $txt, $scripturl, $modSettings;
 
 	echo '
-	<div id="statistics" class="main_section">
-		<div class="cat_bar">
-			<h3 class="catbg">', $context['page_title'], '</h3>
-		</div>
+	<div id="statistics">
+		<h3 class="cat_bar">', $context['page_title'], '</h3>
 		<div class="roundframe">
 			<div class="title_bar">
 				<h4 class="titlebg">
@@ -125,11 +123,9 @@ function template_main()
 	echo '
 		</div><!-- .roundframe -->
 		<br class="clear">
-		<div class="cat_bar">
-			<h3 class="catbg">
+		<h3 class="cat_bar">
 				<span class="main_icons history"></span>', $txt['forum_history'], '
-			</h3>
-		</div>';
+		</h3>';
 
 	if (!empty($context['yearly']))
 	{

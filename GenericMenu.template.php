@@ -150,13 +150,8 @@ function template_generic_menu_tabs(&$menu_context)
 	if (!empty($tab_context['title']))
 	{
 		echo '
-					<div class="cat_bar">', (function_exists('template_admin_quick_search') ? '
-						<form action="' . $scripturl . '?action=admin;area=search" method="post" accept-charset="' . $context['character_set'] . '">' : ''), '
-							<h3 class="catbg">';
-
-		// The function is in Admin.template.php, but since this template is used elsewhere too better check if the function is available
-		if (function_exists('template_admin_quick_search'))
-			template_admin_quick_search();
+				', (function_exists('template_admin_quick_search') ? '<form action="' . $scripturl . '?action=admin;area=search" method="post" accept-charset="' . $context['character_set'] . '">' : ''), '
+					<h3 class="cat_bar">';
 
 		// Exactly how many tabs do we have?
 		if (!empty($context['tabs']))
@@ -208,6 +203,9 @@ function template_generic_menu_tabs(&$menu_context)
 			}
 		}
 
+		echo '
+							<span>';
+
 		// Show an icon and/or a help item?
 		if (!empty($selected_tab['icon_class']) || !empty($tab_context['icon_class']) || !empty($selected_tab['icon']) || !empty($tab_context['icon']) || !empty($selected_tab['help']) || !empty($tab_context['help']))
 		{
@@ -229,17 +227,23 @@ function template_generic_menu_tabs(&$menu_context)
 								', $tab_context['title'];
 
 		echo '
-							</h3>', (function_exists('template_admin_quick_search') ? '
-						</form>' : ''), '
-					</div><!-- .cat_bar -->';
+							</span>';
+
+		// The function is in Admin.template.php, but since this template is used elsewhere too better check if the function is available
+		if (function_exists('template_admin_quick_search'))
+			template_admin_quick_search();
+
+		echo '
+						</h3><!-- .cat_bar -->
+					', (function_exists('template_admin_quick_search') ? '</form>' : ''), '';
 	}
 
 	// Shall we use the tabs? Yes, it's the only known way!
 	if (!empty($selected_tab['description']) || !empty($tab_context['description']))
 		echo '
-					<p class="information">
+					<div class="information">
 						', !empty($selected_tab['description']) ? $selected_tab['description'] : $tab_context['description'], '
-					</p>';
+					</div>';
 
 	// Print out all the items in this tab (if any).
 	if (!empty($context['tabs']))
